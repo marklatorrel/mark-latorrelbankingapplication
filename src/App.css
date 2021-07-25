@@ -36,3 +36,22 @@
     transform: rotate(360deg);
   }
 }
+
+.content{
+  margin-top: 60px;
+  margin-left: 20%;
+  margin-right: 20%;
+}
+
+
+.color-nav{
+  background-color: rgb(77, 43, 14);
+}
+
+.underline {
+  color: white;
+ }
+
+ .current {
+  border-bottom: 4px solid white;
+}
