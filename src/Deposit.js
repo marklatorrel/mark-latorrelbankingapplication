@@ -4,8 +4,7 @@ import {
   Form,
   InputGroup,
   FormControl,
-  Row,
-  Col,
+  Row
 } from "react-bootstrap";
 
 import React from "react";
