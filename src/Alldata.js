@@ -2,14 +2,13 @@ import { useUser } from "./UserContext";
 import { Card, Table} from "react-bootstrap";
 
 function AllData() {
-  const { user, setUser } = useUser();
-  const { allUsers, setAllUsers } = useUser();
+  const { allUsers } = useUser();
 
 
   function renderOneRow(person) {
 
     return (
-      <tr >
+      <tr key={person.id}>
         <td>{person.id}</td>
         <td>{person.name}</td>
         <td>{person.email}</td>
@@ -21,7 +20,7 @@ function AllData() {
 
   return (
     <Card className="content">
-      <Card.Header>All the user</Card.Header>
+      <Card.Header>All the users</Card.Header>
       <Card.Body>
         <Table striped bordered hover>
           <thead>
