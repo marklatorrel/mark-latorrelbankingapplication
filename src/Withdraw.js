@@ -7,24 +7,31 @@ import {
   Row
 } from "react-bootstrap";
 
-import React, { useContext } from "react";
-import { UserContext } from "./UserContext";
+import React, { useState } from "react";
+import { useUser } from "./UserContext";
 
 function Withdraw() {
-  const { user, setUser } = useContext(UserContext);
-  const [value, setValue] = React.useState(user.accountBalanceUsd);
+  const { user, setUser } = useUser();
+  const [balance, setBalance] = useState(user.accountBalanceUsd);
+  const [value, setValue] = useState(user.accountBalanceUsd);
 
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!value) return;
-    console.log(typeof value);
-    console.log(typeof user.accountBalanceUsd);
-    let newBalance = user.accountBalanceUsd + parseInt(value);
+    if (value > user.accountBalanceUsd){
+        alert("Insufficient money");
+        return;
+    } else if (isNaN(value)){
+        alert("Write numbers only");
+        return;
+    }
+    let newBalance = user.accountBalanceUsd - parseInt(value);
     user.accountBalanceUsd = newBalance
     console.log(user);
+    setBalance(newBalance)
     setUser(user);
-    //alert("Succesfull Withdraw");
+    alert("Succesfull Withdraw");
   };
 
   return (
@@ -34,7 +41,7 @@ function Withdraw() {
         <Form onSubmit={handleSubmit}>
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
             <Form.Label column sm="10">
-              {user.name} your current balance is $ {user.accountBalanceUsd}
+              {user.name} your current balance is USD $ {balance}
             </Form.Label>
           </Form.Group>
 
@@ -43,16 +50,15 @@ function Withdraw() {
             <InputGroup className="mb-3">
               <InputGroup.Text>$</InputGroup.Text>
               <FormControl
-                aria-label="Amount (to the nearest dollar)"
-                type="number"
+                type="text"
                 className="input"
-                placeholder="Add Todo..."
+                placeholder="Add an amount"
                 onChange={(e) => setValue(e.target.value)}
               />
               <InputGroup.Text>.00</InputGroup.Text>
             </InputGroup>
           </Form.Group>
-          <Button variant="primary" type="submit">
+          <Button disabled={!value} variant="primary" type="submit">
             Withdraw
           </Button>
         </Form>
