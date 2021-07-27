@@ -4,7 +4,7 @@ import { useUser } from "./UserContext";
 
 function CreateAccount() {
   var success = false;
-
+  var errors = { name: "", email: "", password: "" };
   const { user, setUser } = useUser();
   const { allUsers, setAllUsers } = useUser();
   const [accountSuccess, setAccountSuccess] = useState("in-process");
@@ -16,11 +16,7 @@ function CreateAccount() {
     accountBalanceUsd: 0,
   });
 
-  const [error, setError] = useState({
-    name: "",
-    email: "",
-    password: "",
-  });
+  const [error, setError] = useState(errors);
 
   useEffect(() => {
     console.log("Init of useEffect");
@@ -59,30 +55,53 @@ function CreateAccount() {
     success = true;
     //Name validation
     if (!value.name) {
-      setError({
-        ...error,
+      errors = {
+        ...errors,
         name: "Name can not be empty",
-      });
+      };
       success = false;
     }
 
     if (value.name) {
       if (!value.name.match(/^[a-zA-Z]+$/)) {
-        setError({
-          ...error,
+        errors = {
+          ...errors,
           name: "The name must contain only letters",
-        });
+        };
         success = false;
       }
     }
 
     if (!value.email) {
-      setError({
-        ...error,
+      errors= {
+        ...errors,
         email: "Email can not be empty",
-      });
+      };
       success = false;
     }
+
+    if (!value.password) {
+      errors= {
+        ...errors,
+        password: "Password can not be empty",
+      };
+      success = false;
+    }
+    if (value.password) {
+      if (value.password.length < 8) {
+        errors= {
+          ...errors,
+          password: "Password must have 8 or more characters",
+        };
+        success = false;
+      }
+    }
+
+    setError({
+      ...errors,
+      errors,
+    });
+
     return success;
   }
 
@@ -130,6 +149,7 @@ function CreateAccount() {
                   setValue({ ...value, password: e.target.value })
                 }
               />
+              <p style={{ color: "red" }}>{error.password}</p>
             </Form.Group>
             <Button variant="primary" type="submit">
               Create New Account
