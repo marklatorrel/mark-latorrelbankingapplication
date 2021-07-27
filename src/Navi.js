@@ -26,7 +26,8 @@ function Navi() {
           delay={{ show: 250, hide: 400 }}
           overlay={renderTooltip("Homepage")}
         >
-          <Navbar.Brand as={Link} to="/" id="home">Stratton Oakmont Bank</Navbar.Brand>
+          <Navbar.Brand className={(underline === "homepage") ? 'underline' : ''} as={Link} to="/" id="home"
+          onClick={() => setUnderline("homepage")}>Stratton Oakmont Bank</Navbar.Brand>
         </OverlayTrigger>
 
         <Nav className="me-auto">
