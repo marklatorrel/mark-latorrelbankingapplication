@@ -36,7 +36,7 @@ function CreateAccount() {
       // Trimming any whitespace
       [e.target.id]: e.target.value.trim(),
     });
-    if(!value.name || !value.email || !value.password){
+    if(value.name==="" || value.email==="" || value.password===""){
       setDisable(true);
     } else setDisable(false);
     handleValidation();

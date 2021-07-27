@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import {
   Navbar,
   Nav,
@@ -9,6 +10,7 @@ import { Link } from "react-router-dom";
 
 function Navi() {
 
+    const [underline, setUnderline] = useState('');
 
   const renderTooltip = (props) => (
     <Tooltip id="button-tooltip">{props}</Tooltip>   
