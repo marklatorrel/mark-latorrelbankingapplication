@@ -63,7 +63,7 @@ function CreateAccount() {
     }
 
     if (value.name) {
-      if (!value.name.match(/^[a-zA-Z]+$/)) {
+      if (!value.name.match(/^[a-zA-Z ]+$/)) {
         errors = {
           ...errors,
           name: "The name must contain only letters",
