@@ -48,18 +48,17 @@ function CreateAccount() {
       });
       setAccountSuccess("success");
     } else {
-
       setAccountSuccess("no-success");
     }
   };
 
   function handleValidation() {
-
     //Name validation
     if (!value.name) {
       setError({
         ...error,
-        name: "Name can not be empty"});
+        name: "Name can not be empty",
+      });
       return (success = false);
     }
 
@@ -67,7 +66,8 @@ function CreateAccount() {
       if (!value.name.match(/^[a-zA-Z]+$/)) {
         setError({
           ...error,
-          name: "The name must contain only letters"});
+          name: "The name must contain only letters",
+        });
         return (success = false);
       }
     }
@@ -96,7 +96,7 @@ function CreateAccount() {
                   })
                 }
               />
-            <p style={{color: 'red'}}>{error.name}</p>
+              <p style={{ color: "red" }}>{error.name}</p>
             </Form.Group>
             <Form.Group className="mb-3" controlId="email">
               <Form.Label>Email</Form.Label>
@@ -130,7 +130,14 @@ function CreateAccount() {
             <Button
               id="newaccount"
               variant="primary"
-              onClick={() => setAccountSuccess("in-process")}
+              onClick={() => {
+                setAccountSuccess("in-process");
+                setError({
+                  name: "",
+                  email: "",
+                  password: "",
+                });
+              }}
             >
               Create another account
             </Button>
