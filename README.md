@@ -1,4 +1,5 @@
-# PACMAN EXERCISE
+# BAD BANK EXERCISE
+## by Markyño D. La Torre
 
 ## Description of project
 This is a first version of a bad bank website that includes:
