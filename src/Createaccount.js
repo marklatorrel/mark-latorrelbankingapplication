@@ -23,9 +23,10 @@ function CreateAccount() {
   });
 
   useEffect(() => {
+    console.log(value);
     console.log(accountSuccess);
     console.log(JSON.stringify(error));
-  }, [accountSuccess, error]);
+  }, [accountSuccess, error, value]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -55,8 +56,10 @@ function CreateAccount() {
   function handleValidation() {
 
     //Name validation
-    if (value.name === "") {
-      error.name = "Name cannot be empty";
+    if (!value.name) {
+      setError({
+        ...error,
+        name: "Name can not be empty"});
       return (success = false);
     }
 
@@ -93,7 +96,7 @@ function CreateAccount() {
                   })
                 }
               />
-            <p>{error.name}</p>
+            <p style={{color: 'red'}}>{error.name}</p>
             </Form.Group>
             <Form.Group className="mb-3" controlId="email">
               <Form.Label>Email</Form.Label>
