@@ -23,9 +23,12 @@ function CreateAccount() {
   });
 
   useEffect(() => {
+    console.log("Init of useEffect");
     console.log(value);
     console.log(accountSuccess);
     console.log(JSON.stringify(error));
+    console.log("this is it");
+    console.log("print" + success);
   }, [accountSuccess, error, value]);
 
   const handleSubmit = (e) => {
@@ -53,26 +56,34 @@ function CreateAccount() {
   };
 
   function handleValidation() {
+    success = true;
     //Name validation
     if (!value.name) {
       setError({
         ...error,
         name: "Name can not be empty",
       });
-      return (success = false);
+      success = false;
     }
 
-    if (value.name !== null) {
+    if (value.name) {
       if (!value.name.match(/^[a-zA-Z]+$/)) {
         setError({
           ...error,
           name: "The name must contain only letters",
         });
-        return (success = false);
+        success = false;
       }
     }
 
-    return (success = true);
+    if (!value.email) {
+      setError({
+        ...error,
+        email: "Email can not be empty",
+      });
+      success = false;
+    }
+    return success;
   }
 
   return (
@@ -108,6 +119,7 @@ function CreateAccount() {
               <Form.Text className="text-muted">
                 We'll never share your email with anyone else.
               </Form.Text>
+              <p style={{ color: "red" }}>{error.email}</p>
             </Form.Group>
             <Form.Group className="mb-3" controlId="password">
               <Form.Label>Password</Form.Label>
