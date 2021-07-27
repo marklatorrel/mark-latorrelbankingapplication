@@ -55,3 +55,9 @@
  .current {
   border-bottom: 4px solid white;
 }
+
+/* Add a black background color to the top navigation */
+.underline {
+  border-bottom: 1px solid white;
+}
+

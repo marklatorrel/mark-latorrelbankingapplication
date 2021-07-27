@@ -9,7 +9,7 @@ function CreateAccount() {
   const { allUsers, setAllUsers } = useUser();
   const [accountSuccess, setAccountSuccess] = useState("in-process");
   const [value, setValue] = useState({
-    id: 0,
+    id: allUsers.length,
     name: "",
     email: "",
     password: "",
@@ -56,7 +56,7 @@ function CreateAccount() {
       setAccountSuccess(true);
       console.log(allUsers);
       setValue({
-        id: 0,
+        id: allUsers.length,
         name: "",
         email: "",
         password: "",
