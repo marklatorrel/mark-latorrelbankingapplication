@@ -17,20 +17,37 @@ function CreateAccount() {
   });
 
   const [error, setError] = useState(errors);
+  const [disable, setDisable] = useState(true);
 
   useEffect(() => {
-    console.log("Init of useEffect");
-    console.log(value);
-    console.log(accountSuccess);
-    console.log(JSON.stringify(error));
-    console.log("this is it");
-    console.log("print" + success);
+    //console.log("Init of useEffect");
+    //console.log(value);
+    //console.log(accountSuccess);
+    //console.log(JSON.stringify(error));
+    //console.log("this is it");
+    //console.log("print" + success);
+    console.log(disable);
+
   }, [accountSuccess, error, value]);
+
+  const handleChange = (e) => {
+    setValue({
+      ...value,
+      // Trimming any whitespace
+      [e.target.id]: e.target.value.trim(),
+    });
+    if(!value.name || !value.email || !value.password){
+      setDisable(true);
+    } else setDisable(false);
+    handleValidation();
+
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(value);
     handleValidation();
+
     if (success) {
       console.log("The form has been a success");
       allUsers.push(value);
@@ -118,13 +135,7 @@ function CreateAccount() {
                 type="text"
                 className="input"
                 placeholder="Enter your full name"
-                onChange={(e) =>
-                  setValue({
-                    ...value,
-                    name: e.target.value,
-                    id: allUsers.length,
-                  })
-                }
+                onChange={handleChange}
               />
               <p style={{ color: "red" }}>{error.name}</p>
             </Form.Group>
@@ -133,7 +144,7 @@ function CreateAccount() {
               <FormControl
                 placeholder="Email"
                 type="email"
-                onChange={(e) => setValue({ ...value, email: e.target.value })}
+                onChange={handleChange}
               />
               <Form.Text className="text-muted">
                 We'll never share your email with anyone else.
@@ -145,13 +156,11 @@ function CreateAccount() {
               <Form.Control
                 placeholder="Password"
                 type="password"
-                onChange={(e) =>
-                  setValue({ ...value, password: e.target.value })
-                }
+                onChange={handleChange}
               />
               <p style={{ color: "red" }}>{error.password}</p>
             </Form.Group>
-            <Button variant="primary" type="submit">
+            <Button disabled={disable} variant="primary" type="submit">
               Create New Account
             </Button>
           </Form>
