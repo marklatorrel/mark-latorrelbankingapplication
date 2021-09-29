@@ -4,26 +4,30 @@
 ## Description of project
 This is a first version of a bad bank website that includes:
 
-### Homepage:
+#### Homepage:
 This Page contains a welcome message.
-### Create account:
+#### Create account:
 In this section you can create an account, filling a name, email and password. It will require validation.
-### Deposit:
+#### Deposit:
 Here you can deposit money to your balance.
-### Withdraw:
+#### Withdraw:
 Section to withdraw the money. You can't withdraw more than you have in the balance.
-### All Data:
+#### All Data:
 Here you can see all the users that have an account in the app.
 
 ## Screenshot
 <img width="700" alt="badbank-app" src="https://user-images.githubusercontent.com/78828172/127223698-173a5d89-78a7-4f21-b124-2f561fc88bae.png">
 
 ## How to run
-You only need to clone the repository and run the Index.html code on any web browser.
-Or enter this url
+You only need to clone the repository and do:
+npm run server
+npm start
+
+## Technology used
+Currently the work is using REACT, NodeJS, Express and MongoDB.
 
 ## Roadmap of future
-The next implementation would be making a Log-In page.
+The next implementation would be making the front working well with the backend and make an authentication with firebase.
 
 ## Support
 For any questions, pls email mlatorre@pucp.pe or whatsapp me at +51 976616514
