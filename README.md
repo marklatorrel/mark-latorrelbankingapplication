@@ -1,8 +1,11 @@
 # BAD BANK EXERCISE
 ## by Markyño D. La Torre
 
-## Description of project
-This is a first version of a bad bank website that includes:
+## Description/Motivation
+This project is made for the course of Full Stack Web Development at MITxPro. It's for me to learn how to be a full stack web developer using the MERN stack.
+
+## Features
+This is a bad bank website that includes:
 
 #### Homepage:
 This Page contains a welcome message.
